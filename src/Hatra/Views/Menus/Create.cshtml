@@ -9,149 +9,151 @@
     <link href="~/css/bootstrap-select.min.css" rel="stylesheet" asp-append-version="true" />
 }
 
-<div class="alert alert-warning mt-5">
-    <a href="#" class="close" data-dismiss="alert">×</a>
-    <ul>
-        <li><strong>تعداد منوهای اصلی</strong></li>
-        <li>
-            تعداد منو اصلی قابل نمایش <strong>7</strong> مورد است.
-        </li>
-        <li>
-            چنانچه بیش از 7 مورد منو اصلی قابل نمایش تعریف کنید به صورت اتوماتیک غیر قابل نمایش خواهند شد
-        </li>
-        <li>
-            منوها تا سه سطح قابل نمایش هستند
-        </li>
-    </ul>
-    <ul>
-        <li><strong>لینک منو ها</strong></li>
-        <li>
-            برای منوهای اصلی که زیر منو خواهند داشت هیچ لینکی تعریف نکنید
-        </li>
-        <li>
-            در صورت تعریف لینک در موبایل و تبلت ممکن است به درستی کار نکند
-        </li>
-    </ul>
-    <ul>
-        <li><strong>مگا منو</strong></li>
-        <li>
-            مگا منو ها برای منو های بسیار بزرگ بکار میرود
-        </li>
-        <li>
-            از منو های تو در تو در مگا منو استفاده نکنید، تنها یک سطح باشند
-        </li>
-        <li>
-            فقط منو های اصلی را به عنوان مگا منو انتخاب کنید
-        </li>
-    </ul>
-    <ul>
-        <li><strong>لینک</strong></li>
-        <li>اولویت ثبت لینک با لینک گروه ها / در صورت خالی بودن، لینک صفحات / در صورت خالی بودن، لینک است</li>
-        <li>در صورت نیاز به آدرس دهی به صفحاتی خارج از سایت لینک صفحات و لینک گروه ها را در حالت --انتخاب-- قرار دهید</li>
-    </ul>
-</div>
+            <div class="container-fluid">
+                <div class="alert alert-warning">
+                    <a href="#" class="close" data-dismiss="alert">×</a>
+                    <ul>
+                        <li><strong>تعداد منوهای اصلی</strong></li>
+                        <li>
+                            تعداد منو اصلی قابل نمایش <strong>7</strong> مورد است.
+                        </li>
+                        <li>
+                            چنانچه بیش از 7 مورد منو اصلی قابل نمایش تعریف کنید به صورت اتوماتیک غیر قابل نمایش خواهند شد
+                        </li>
+                        <li>
+                            منوها تا سه سطح قابل نمایش هستند
+                        </li>
+                    </ul>
+                    <ul>
+                        <li><strong>لینک منو ها</strong></li>
+                        <li>
+                            برای منوهای اصلی که زیر منو خواهند داشت هیچ لینکی تعریف نکنید
+                        </li>
+                        <li>
+                            در صورت تعریف لینک در موبایل و تبلت ممکن است به درستی کار نکند
+                        </li>
+                    </ul>
+                    <ul>
+                        <li><strong>مگا منو</strong></li>
+                        <li>
+                            مگا منو ها برای منو های بسیار بزرگ بکار میرود
+                        </li>
+                        <li>
+                            از منو های تو در تو در مگا منو استفاده نکنید، تنها یک سطح باشند
+                        </li>
+                        <li>
+                            فقط منو های اصلی را به عنوان مگا منو انتخاب کنید
+                        </li>
+                    </ul>
+                    <ul>
+                        <li><strong>لینک</strong></li>
+                        <li>اولویت ثبت لینک با لینک گروه ها / در صورت خالی بودن، لینک صفحات / در صورت خالی بودن، لینک است</li>
+                        <li>در صورت نیاز به آدرس دهی به صفحاتی خارج از سایت لینک صفحات و لینک گروه ها را در حالت --انتخاب-- قرار دهید</li>
+                    </ul>
+                </div>
 
-<div class="card mt-5">
-    <div class="card-header">
-        <h5 class="card-title">@ViewData["Title"]</h5>
-    </div>
-    <div class="card-body">
-        <form asp-controller="Menus"
-              asp-action="Create"
-              method="post"
-              enctype="multipart/form-data">
-            <partial name="_CustomValidationSummary" />
-            <div class="form-group row">
-                <label asp-for="Name" class="col-md-2 col-form-label text-md-left"></label>
-                <div class="col-md-10">
-                    <input dir="rtl" asp-for="Name" class="form-control" />
-                    <span asp-validation-for="Name" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label asp-for="Link" class="col-md-2 col-form-label text-md-left"></label>
-                <div class="col-md-10">
-                    <input dir="ltr" asp-for="Link" class="form-control" />
-                    <span asp-validation-for="Link" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label asp-for="PageId" class="col-md-2 col-form-label text-md-left"></label>
-                <div class="col-md-10">
-                    <select dir="rtl" asp-for="PageId" class="form-control"
-                            asp-items="@ViewBag.PopulatePages">
-                        <option value="">-- انتخاب --</option>
-                    </select>
-                    <span asp-validation-for="PageId" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label asp-for="CategoryId" class="col-md-2 col-form-label text-md-left"></label>
-                <div class="col-md-10">
-                    <select dir="rtl" asp-for="CategoryId" class="form-control"
-                            asp-items="@ViewBag.PopulateCategories">
-                        <option value="">-- انتخاب --</option>
-                    </select>
-                    <span asp-validation-for="CategoryId" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label asp-for="Order" class="col-md-2 col-form-label text-md-left"></label>
-                <div class="col-md-10">
-                    <input dir="ltr" asp-for="Order" class="form-control" onblur="triggerRemoteValidation()" />
-                    <span asp-validation-for="Order" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label asp-for="ParentId" class="col-md-2 col-form-label text-md-left"></label>
-                <div class="col-md-10">
-                    <select dir="rtl" asp-for="ParentId" class="form-control"
-                            asp-items="@ViewBag.PopulateMenus">
-                        <option value="">-- انتخاب --</option>
-                    </select>
-                    <span asp-validation-for="ParentId" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label asp-for="Type" class="col-md-2 col-form-label text-md-left"></label>
-                <div class="col-md-10">
-                    <select dir="rtl" asp-for="Type" class="form-control"
-                            asp-items="@Html.GetEnumSelectList(typeof(MenuType))">
-                        <option value="">-- انتخاب --</option>
-                    </select>
-                    <span asp-validation-for="Type" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="offset-md-2 col-md-10">
-                    <div class="form-check">
-                        <label asp-for="IsMegaMenu" class="form-check-label">
-                            <input class="form-check-input" asp-for="IsMegaMenu" />
-                            @Html.DisplayNameFor(m => m.IsMegaMenu)
-                        </label>
+                <div class="card mt-5">
+                    <div class="card-header">
+                        <h5 class="card-title">@ViewData["Title"]</h5>
+                    </div>
+                    <div class="card-body">
+                        <form asp-controller="Menus"
+                              asp-action="Create"
+                              method="post"
+                              enctype="multipart/form-data">
+                            <partial name="_CustomValidationSummary" />
+                            <div class="form-group row">
+                                <label asp-for="Name" class="col-md-2 col-form-label text-md-left"></label>
+                                <div class="col-md-10">
+                                    <input dir="rtl" asp-for="Name" class="form-control" />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label asp-for="Link" class="col-md-2 col-form-label text-md-left"></label>
+                                <div class="col-md-10">
+                                    <input dir="ltr" asp-for="Link" class="form-control" />
+                                    <span asp-validation-for="Link" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label asp-for="PageId" class="col-md-2 col-form-label text-md-left"></label>
+                                <div class="col-md-10">
+                                    <select dir="rtl" asp-for="PageId" class="form-control"
+                                            asp-items="@ViewBag.PopulatePages">
+                                        <option value="">-- انتخاب --</option>
+                                    </select>
+                                    <span asp-validation-for="PageId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label asp-for="CategoryId" class="col-md-2 col-form-label text-md-left"></label>
+                                <div class="col-md-10">
+                                    <select dir="rtl" asp-for="CategoryId" class="form-control"
+                                            asp-items="@ViewBag.PopulateCategories">
+                                        <option value="">-- انتخاب --</option>
+                                    </select>
+                                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label asp-for="Order" class="col-md-2 col-form-label text-md-left"></label>
+                                <div class="col-md-10">
+                                    <input dir="ltr" asp-for="Order" class="form-control" onblur="triggerRemoteValidation()" />
+                                    <span asp-validation-for="Order" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label asp-for="ParentId" class="col-md-2 col-form-label text-md-left"></label>
+                                <div class="col-md-10">
+                                    <select dir="rtl" asp-for="ParentId" class="form-control"
+                                            asp-items="@ViewBag.PopulateMenus">
+                                        <option value="">-- انتخاب --</option>
+                                    </select>
+                                    <span asp-validation-for="ParentId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label asp-for="Type" class="col-md-2 col-form-label text-md-left"></label>
+                                <div class="col-md-10">
+                                    <select dir="rtl" asp-for="Type" class="form-control"
+                                            asp-items="@Html.GetEnumSelectList(typeof(MenuType))">
+                                        <option value="">-- انتخاب --</option>
+                                    </select>
+                                    <span asp-validation-for="Type" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="offset-md-2 col-md-10">
+                                    <div class="form-check">
+                                        <label asp-for="IsMegaMenu" class="form-check-label">
+                                            <input class="form-check-input" asp-for="IsMegaMenu" />
+                                            @Html.DisplayNameFor(m => m.IsMegaMenu)
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="offset-md-2 col-md-10">
+                                    <div class="form-check">
+                                        <label asp-for="IsShow" class="form-check-label">
+                                            <input class="form-check-input" asp-for="IsShow" />
+                                            @Html.DisplayNameFor(m => m.IsShow)
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="offset-md-2 col-md-10">
+                                    <security-trimming asp-area="" asp-controller="Menus" asp-action="Create">
+                                        <button type="submit" class="btn btn-info col-md-2">ارسال</button>
+                                    </security-trimming>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-            <div class="form-group row">
-                <div class="offset-md-2 col-md-10">
-                    <div class="form-check">
-                        <label asp-for="IsShow" class="form-check-label">
-                            <input class="form-check-input" asp-for="IsShow" />
-                            @Html.DisplayNameFor(m => m.IsShow)
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="offset-md-2 col-md-10">
-                    <security-trimming asp-area="" asp-controller="Menus" asp-action="Create">
-                        <button type="submit" class="btn btn-info col-md-2">ارسال</button>
-                    </security-trimming>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
 
 @section Scripts
 {
