@@ -63,7 +63,7 @@ namespace Hatra.Controllers
                 var path = Path.Combine(_hostingEnvironment.ContentRootPath, "ShowingSettingSite.json");
                 System.IO.File.WriteAllText(path, JsonConvert.SerializeObject(viewModel));
 
-                return Redirect("/Identity/Home/Index");
+                return Redirect("/Identity/Home");
             }
 
             return View("Index", viewModel);
