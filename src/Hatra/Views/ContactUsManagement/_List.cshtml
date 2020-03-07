@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<ContactUsViewModel>
 
 <div class="table-responsive">
-    <table id="all-roles-list" class="table table-striped table-hover table-bordered">
-        <thead class="thead-light">
+    <table class="table">
+        <thead class="text-primary">
             <tr>
                 <th class="text-center">نام و نام خانوادگی</th>
                 <th class="text-center">ایمیل</th>
@@ -36,8 +36,34 @@
                                 <span class="fa fa-minus text-danger"></span>
                             }
                         </td>
-                        <td class="text-center">
-                            <div class="dropdown">
+                        <td class="text-center align-baseline">
+                            @*@if (item.IsAnsered)
+                                {
+                                    <security-trimming asp-area="" asp-controller="ContactUsManagement" asp-action="ReSend">
+                                        <form method="post"
+                                              asp-controller="ContactUsManagement"
+                                              asp-action="ReSend"
+                                              asp-route-id="@item.Id"
+                                              role="form"
+                                              data-ajax="true"
+                                              data-ajax-begin="dataAjaxBegin"
+                                              data-ajax-success="dataAjaxSuccess"
+                                              data-ajax-failure="dataAjaxFailure"
+                                              data-ajax-method="POST"
+                                              enctype="multipart/form-data">
+                                            <button type="submit" class="dropdown-item text-info"><i class="fas fa-reply"></i> باز ارسال</button>
+                                        </form>
+                                    </security-trimming>
+                                }*@
+                            <security-trimming asp-area="" asp-controller="ContactUsManagement" asp-action="RenderEdit">
+                                <a id="btnEdit-@item.Id" data-edit-id="@item.Id" class="ml-3 text-primary" asp-controller="ContactUsManagement" asp-action="RenderEdit" asp-route-id="@item.Id"><i class="fas fa-reply"></i> پاسخ</a>
+                            </security-trimming>
+                            <security-trimming asp-area="" asp-controller="ContactUsManagement" asp-action="RenderDelete">
+                                <a href="#" id="btnDelete-@item.Id" data-delete-id="@item.Id" class="text-danger"><i class="fas fa-trash-alt"></i> حذف</a>
+                            </security-trimming>
+
+                        </td>
+                        @*<div class="dropdown">
                                 <button class="btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-pencil-alt"></i>
                                 </button>
@@ -83,8 +109,7 @@
                                         </form>
                                     </security-trimming>
                                 </div>
-                            </div>
-                        </td>
+                            </div>*@
                     </tr>
                 }
             }

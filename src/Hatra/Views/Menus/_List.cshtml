@@ -23,67 +23,74 @@
             {
                 foreach (var item in Model)
                 {
-                    <tr>
-                        <td class="text-center">@item.Name</td>
-                        <td class="text-center">@item.ParentName</td>
-                        <td class="text-center text-primary">@item.Order</td>
-                        <td class="text-center">
-                            @if (item.IsMegaMenu)
-                            {
-                                <span class="fa fa-check text-success"></span>
-                            }
-                            else
-                            {
-                                <span class="fa fa-minus text-danger"></span>
-                            }
-                        </td>
-                        <td class="text-center">
-                            @if (item.IsShow)
-                            {
-                                <span class="fa fa-check text-success"></span>
-                            }
-                            else
-                            {
-                                <span class="fa fa-minus text-danger"></span>
-                            }
-                        </td>
-                        <td class="text-center">
-                            <div class="dropdown">
-                                <button class="btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-pencil-alt"></i>
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <tr>
+            <td class="text-center">@item.Name</td>
+            <td class="text-center">@item.ParentName</td>
+            <td class="text-center text-primary">@item.Order</td>
+            <td class="text-center">
+                @if (item.IsMegaMenu)
+                {
+                    <span class="fa fa-check text-success"></span>
+                }
+                else
+                {
+                    <span class="fa fa-minus text-danger"></span>
+                }
+            </td>
+            <td class="text-center">
+                @if (item.IsShow)
+                {
+                    <span class="fa fa-check text-success"></span>
+                }
+                else
+                {
+                    <span class="fa fa-minus text-danger"></span>
+                }
+            </td>
+            <td class="text-center align-baseline">
+                <security-trimming asp-area="" asp-controller="Menus" asp-action="RenderEdit">
+                    <a id="btnEdit-@item.Id" data-edit-id="@item.Id" class="ml-3 text-primary" asp-controller="Menus" asp-action="RenderEdit" asp-route-id="@item.Id"><i class="fas fa-edit"></i> ویرایش</a>
+                </security-trimming>
+                <security-trimming asp-area="" asp-controller="Menus" asp-action="RenderDelete">
+                    <a href="#" id="btnDelete-@item.Id" data-delete-id="@item.Id" class="text-danger"><i class="fas fa-trash-alt"></i> حذف</a>
+                </security-trimming>
+               
+            </td>
+            @*<div class="dropdown">
+            <button class="btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-pencil-alt"></i>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
-                                    <security-trimming asp-area="" asp-controller="Menus" asp-action="RenderEdit">
-                                        <a id="btnEdit-@item.Id" data-edit-id="@item.Id" class="dropdown-item text-primary" asp-controller="Menus" asp-action="RenderEdit" asp-route-id="@item.Id"><i class="fas fa-edit"></i> ویرایش</a>
-                                    </security-trimming>
+                <security-trimming asp-area="" asp-controller="Menus" asp-action="RenderEdit">
+                    <a id="btnEdit-@item.Id" data-edit-id="@item.Id" class="dropdown-item text-primary" asp-controller="Menus" asp-action="RenderEdit" asp-route-id="@item.Id"><i class="fas fa-edit"></i> ویرایش</a>
+                </security-trimming>
 
-                                    <security-trimming asp-area="" asp-controller="Menus" asp-action="RenderDelete">
-                                        <a href="#" id="btnDelete-@item.Id" data-delete-id="@item.Id" class="dropdown-item text-danger"><i class="fas fa-trash-alt"></i> حذف</a>
-                                    </security-trimming>
+                <security-trimming asp-area="" asp-controller="Menus" asp-action="RenderDelete">
+                    <a href="#" id="btnDelete-@item.Id" data-delete-id="@item.Id" class="dropdown-item text-danger"><i class="fas fa-trash-alt"></i> حذف</a>
+                </security-trimming>
 
-                                    <security-trimming asp-area="" asp-controller="Common" asp-action="GetAuditableInformation">
-                                        <div class="dropdown-divider"></div>
-                                        @*<a href="#" id="btnAuditableInformation-@item.Id" data-auditable-information-id="@item.Id"><i class="fas fa-info-circle"></i></a>*@
-                                        <form method="post"
-                                              asp-controller="Common"
-                                              asp-action="GetAuditableInformation"
-                                              asp-route-typeName="@nameof(Menu)"
-                                              asp-route-id="@item.Id"
-                                              role="form"
-                                              data-ajax="true"
-                                              data-ajax-success="dataAjaxSuccessInformation"
-                                              data-ajax-failure="dataAjaxFailure"
-                                              data-ajax-method="POST"
-                                              enctype="multipart/form-data">
-                                            <button type="submit" class="dropdown-item"><i class="fas fa-info-circle"></i> اطلاعات</button>
-                                        </form>
-                                    </security-trimming>
+                <security-trimming asp-area="" asp-controller="Common" asp-action="GetAuditableInformation">
+                    <div class="dropdown-divider"></div>
+                    <a href="#" id="btnAuditableInformation-@item.Id" data-auditable-information-id="@item.Id"><i class="fas fa-info-circle"></i></a>
+                    <form method="post"
+                          asp-controller="Common"
+                          asp-action="GetAuditableInformation"
+                          asp-route-typeName="@nameof(Menu)"
+                          asp-route-id="@item.Id"
+                          role="form"
+                          data-ajax="true"
+                          data-ajax-success="dataAjaxSuccessInformation"
+                          data-ajax-failure="dataAjaxFailure"
+                          data-ajax-method="POST"
+                          enctype="multipart/form-data">
+                        <button type="submit" class="dropdown-item"><i class="fas fa-info-circle"></i> اطلاعات</button>
+                    </form>
+                </security-trimming>
 
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
+            </div>
+        </div>*@
+        </tr>
                 }
             }
         </tbody>
